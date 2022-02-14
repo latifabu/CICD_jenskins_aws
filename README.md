@@ -30,7 +30,8 @@ Follow the commmands below:
 ![commands for terminal](https://user-images.githubusercontent.com/98215575/153617093-9e0bd71c-1c1f-4cad-b577-08c3057c5604.png)
 
 After entering the commands you may get an error,stopping you from pusing the README.
-Ensure you are in the ./ssh dr
+Ensure you are in the`./ssh dr`
+Enter: `eval "$(ssh-agent -s)"`
 Enter: `ssh-add ~/.ssh/103a`
 cd into the repo created
 
