@@ -1,5 +1,6 @@
 #CICD with Jenkins and AWS
 # CICD Jenskins and AWS
+test test
 - On the terminal
 - cd into `~/.ssh`
 - Enter the command `ssh-keygen -t rsa -b 4096 -C "email@email.com"`
