@@ -2,7 +2,7 @@
 <<<<<<< HEAD
 # CICD Jenskins and AWS
 
-=======
+
 ![My project CICD](https://user-images.githubusercontent.com/98215575/153620770-fe2eecfe-bc06-40f6-8b89-54b6885fa91a.png)
 
 # CICD Jenskins AWS
@@ -18,7 +18,7 @@
    - The key's randomart image is `<image>`
 <<<<<<< HEAD
   
-=======
+
    
 On github:
 - Go to your profile > settings > SSH and GPG keys
@@ -31,8 +31,8 @@ Creating a new repo for CICD on Github
 Image:  
 - On the terminal create a new directory adn add a README.md
 
-- 
-=======
+
+
 ![SSH github new keys](https://user-images.githubusercontent.com/98215575/153615499-8041b59d-ae31-4d0a-8f6d-3dfd38d1e782.png)
 
 Creating a new repo for CICD on Github
