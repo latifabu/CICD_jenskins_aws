@@ -1,12 +1,12 @@
 #CICD with Jenkins and AWS
 <<<<<<< HEAD
 # CICD Jenskins and AWS
-test test TEST
+
 =======
 ![My project CICD](https://user-images.githubusercontent.com/98215575/153620770-fe2eecfe-bc06-40f6-8b89-54b6885fa91a.png)
 
 # CICD Jenskins AWS
->>>>>>> 4777b5feaa6a375ebd5c47c4a4d26eef05374c90
+
 - On the terminal
 - cd into `~/.ssh`
 - Enter the command `ssh-keygen -t rsa -b 4096 -C "email@email.com"`
@@ -20,7 +20,6 @@ test test TEST
   
 =======
    
->>>>>>> 4777b5feaa6a375ebd5c47c4a4d26eef05374c90
 On github:
 - Go to your profile > settings > SSH and GPG keys
 - Go to `SSH Keys / Add new`
@@ -81,4 +80,4 @@ Execute shell
 - Select test 2
 - Select console output again
 - `ps aux` command would have successfully executed.
->>>>>>> 4777b5feaa6a375ebd5c47c4a4d26eef05374c90
+
