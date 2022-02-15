@@ -1,11 +1,10 @@
-#CICD with Jenkins and AWS
-<<<<<<< HEAD
+
 # CICD Jenskins and AWS
 
 
 ![My project CICD](https://user-images.githubusercontent.com/98215575/153620770-fe2eecfe-bc06-40f6-8b89-54b6885fa91a.png)
 
-# CICD Jenskins AWS
+## Linking localhost and Github
 
 - On the terminal
 - cd into `~/.ssh`
@@ -16,15 +15,12 @@
    - Enter passphrase again: `<empty>`
    - The key fingerprint is: `<private>`
    - The key's randomart image is `<image>`
-<<<<<<< HEAD
   
-
-   
 On github:
 - Go to your profile > settings > SSH and GPG keys
 - Go to `SSH Keys / Add new`
 - Save key 
-<<<<<<< HEAD
+
 Image:
 Creating a new repo for CICD on Github
 - Select SSH after creating it and follow the commands below
@@ -54,15 +50,17 @@ cd into the repo created
 
 ![git block](https://user-images.githubusercontent.com/98215575/153618194-2e656c35-9a27-4778-9409-ba507505fc68.png)
 
-# Starting with Jenkins
+
+
+## Starting with Jenkins
 Open Jenkins and enter login details
 - Select New Build then enter item name
 - Build two items, a test build to see the date and time, anotherr build is the post build, for the first test.
 
 Build 1:
-Description: "Testing Jenkins on AWS"
-Strategy: Log ratation
-Max builds: 3
+- Description: "Testing Jenkins on AWS"
+- Strategy: Log ratation
+- Max builds: 3
 Scroll to the bottom, until build is seen.
 Execute shell
 enter commands:
@@ -80,4 +78,112 @@ Execute shell
 - Select test 2
 - Select console output again
 - `ps aux` command would have successfully executed.
+
+## Jenkins
+Building CI job with GitHub
+- Enter local host and generate a new key using `ssh-keygen -t ed25519 -C "yourgitemail@yourgitemail.com"` (follwoing the steps above)
+- Name the key appropriately to avoid confusion with other keys.
+- A public and private key will be generated.
+
+Adding key to Github
+
+- On your terminal `cat KEYNAME.pub`
+- Copy key exactly without missing any content.
+- Create a new repor or in an exsisting one complete the following:
+- Click on Settings > Deploy keys > Add deploy key > Use the same name as key created and paste the public key.
+
+Connect to Jenkins
+
+- Log in
+- Create a `new item`
+- Enter a the name follwing the previous naming convetion 
+- Select `Freestyle Project`
+- Click `Discard old builds` and set the Max number of builds as 3
+- Select `GitHub project` and enter the repos HTTPS. (Make sure the link is HTTP)
+- Under `Office 365 Connector` select Restrict where this project can be run and type sparta-ubuntu-node
+- Scroll to `Source Code Management` and select git
+- In `Repository URL` paste your repos SSH link
+- In the`Credentials` section: 
+- `add` > `jenkins` > `SSH Username with private key` > `Username: KEYNAME` > `Private Key`
+- Select `Enter directly` > `Add` and paste the PRIVATE key created on the terminal.
+- `Branches build` enter `main`
+- `Build Triggers` select `GitHub hook trigger for GITScm polling`
+
+Creating a Webhook
+
+- Go to your repo
+- Select `settings` > `Webhooks` > `Add webhook`
+- Next to `Payload URL` enter your IP from Jenkins but ending with `/github-webhook/`
+- Under `Content type` drop down mendu select `application/json`
+- `Which events would you like to trigger this webhook?` Select `Send me everything`
+Blocker: Webhook did not create itself on first attempt. Spelling was correct but the webhook did not launch. Try multiple times and it should work.
+Return to Jenkins and edit our job:
+
+- Select task > `Configure`
+- Change Branches to build from main to dev
+- Under `Build Environment` select `Provide Node & npm bin/folder to PATH`
+
+A second job must be created to merge branches.
+- Create a new item
+- Name it appropriately 
+- Click `Discard old builds` and set the Max number of builds as 3
+- Follow the steps used to create the first task but with the following exceptions:
+- `Branches to build */dev` not main
+- Under `Build` select `Execute shell`
+- Enter:
+
+```
+git checkout main
+git pull origin main
+git merge origin/dev
+git push origin main
+
+```
+- Apply and save
+- Return to the first task made > select `Configure`
+- Scroll to `Post-build Actions` and select the second task made
+- Select `Trigger only if build is stable`
+
+Creating EC2 instance using Jenkins
+
+- Create a third task
+- Follow the steps used to create the first task but with the following exceptions:
+- Enter under build `scp -o "StrictHostKeyChecking=no" -r app ubuntu@<AWSIP>:~`
+
+In AWS
+
+- Create an EC2 instance
+- Use the subnet and VPC you have created before.
+- Use the same secuirty group for our app but add another rule
+- Add `Type`: `ssh`
+- `Port`: `22`
+- `IP` : `custom`
+- Enter Jenkins IP
+- Follwing the steps before Launch the instance.
+
+Installing dependencies
+
+- ssh into local host
+- run the commands in our provision file
+
+```
+sudo apt-get update -y
+sudo apt-get upgrade -y
+sudo apt-get install nginx -y
+sudo apt-get install nodejs -y
+sudo apt install python-software-properties -y
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install nodejs -y
+sudo apt-get install npm
+sudo npm install pm2 -g
+```
+- cd app
+- `npm install`
+- `npm start`
+- App should be viewable on browser
+
+Blocker:
+App did not appear on first attempt. Reboot instance and the app should appear on browser.
+
+
 
