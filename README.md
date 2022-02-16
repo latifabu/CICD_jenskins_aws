@@ -187,15 +187,15 @@ App did not appear on first attempt. Reboot instance and the app should appear o
 
 ## Creating Server and Launching Master and Agent nodes
 
-Step 1) Spin up an EC2 Instance, that allows all to ssh in
-Step 2) Install Java onto EC2 instance
-Step 3) Install Jenkins
-Step 4) Start Jenkins and install plugins
-Step 5) Connect github to jenkins using priv key
-Step 6) Set webhook to new jenkins ip
-Step 7) Return to Jenkins and ensure `node.js version 13.30`is used
-Step 8) Spin up another ec2 instance called agent and one using your app AMi.
-Step 9) Create a job that obtains new code on the main  branch, one that merges code from main to dev, one that deploys new changes to aws
+- Step 1) Spin up an EC2 Instance, that allows all to ssh in
+- Step 2) Install Java onto EC2 instance
+- Step 3) Install Jenkins
+- Step 4) Start Jenkins and install plugins
+- Step 5) Connect github to jenkins using priv key
+- Step 6) Set webhook to new jenkins ip
+- Step 7) Return to Jenkins and ensure `node.js version 13.30`is used
+- Step 8) Spin up another ec2 instance called agent and one using your app AMi.
+- Step 9) Create a job that obtains new code on the main  branch, one that merges code from main to dev, one that deploys new changes to aws
 
 
 
